@@ -1,300 +1,269 @@
-# 🏠 Housing Price Prediction ML Project
+# 🏦 Loan Eligibility Prediction System
 
-> **A Machine Learning project for predicting housing prices from property-related data.**
+> **A Machine Learning project that classifies loan eligibility using housing and property-related features.**
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python" alt="Python">
-  <img src="https://img.shields.io/badge/Machine%20Learning-Regression-orange?style=for-the-badge" alt="Machine Learning">
-  <img src="https://img.shields.io/badge/Scikit--Learn-ML-green?style=for-the-badge&logo=scikit-learn" alt="Scikit Learn">
-  <img src="https://img.shields.io/badge/Status-Completed-success?style=for-the-badge" alt="Status">
+  <img src="https://img.shields.io/badge/Machine%20Learning-Classification-orange?style=for-the-badge" alt="Machine Learning">
+  <img src="https://img.shields.io/badge/Scikit--Learn-Random%20Forest-green?style=for-the-badge&logo=scikit-learn" alt="Scikit-learn">
+  <img src="https://img.shields.io/badge/Streamlit-Web%20App-red?style=for-the-badge&logo=streamlit" alt="Streamlit">
 </p>
 
 ---
 
 ## ✨ Overview
 
-**Housing Price Prediction** is a Machine Learning project that uses housing data to build a predictive model capable of estimating property prices.
+**Loan Eligibility Prediction System** is a Python-based Machine Learning project that uses property-related information to classify a house into one of two categories: eligible or not eligible.
 
-The project demonstrates a complete beginner-to-intermediate ML workflow:
+The project uses a **Random Forest Classifier** trained on housing data and provides an interactive web interface built with Streamlit. Users can enter property details and receive an instant classification.
+
+The project demonstrates a practical Machine Learning workflow, including data preprocessing, feature encoding, model training, classification, and interactive prediction.
+
+### Project Workflow
 
 ```text
-📊 Dataset
-   ↓
-🧹 Data Preparation
-   ↓
-🔍 Feature Analysis
-   ↓
-🤖 Model Training
-   ↓
-📈 Prediction
-   ↓
-💰 Estimated House Price
+🏠 Housing Dataset (CSV)
+          ↓
+🧹 Data Preprocessing
+          ↓
+🔢 Feature Encoding
+          ↓
+🏷️ Target Label Creation
+          ↓
+🤖 Random Forest Classifier
+          ↓
+🌐 Streamlit Web Interface
+          ↓
+✅ Eligibility Classification
 ```
-
-The goal is to transform raw housing information into useful predictions using Python and Machine Learning techniques.
 
 ---
 
 ## 🎯 Problem Statement
 
-Determining the expected price of a house can be difficult because property prices depend on multiple factors.
+Classifying properties based on their characteristics can help demonstrate how Machine Learning models identify patterns in historical housing data.
 
-This project explores how historical housing data can be used to identify patterns and train a Machine Learning model that can estimate housing prices for new inputs.
+This project builds a classification model using features such as property area, number of bedrooms and bathrooms, parking availability, amenities, and furnishing status.
 
-### The project focuses on:
+The model uses historical property prices to generate binary labels and predicts the corresponding class for new property inputs.
 
-* Understanding housing data
-* Preparing data for Machine Learning
-* Selecting relevant features
-* Training a regression model
-* Generating price predictions
-* Evaluating the prediction model
+**Note:** This is an educational classification project. It does not evaluate actual financial loan eligibility because it does not consider income, credit score, existing debt, employment, or lender-specific criteria.
 
 ---
 
 ## 🚀 Key Features
 
-* 📂 **CSV-based dataset processing**
-* 🧹 **Data preprocessing**
-* 🔎 **Feature-based analysis**
-* 🤖 **Machine Learning regression**
-* 📊 **Housing price prediction**
-* 🐍 **Python-based implementation**
-* ⚡ Simple and easy-to-understand implementation
-* 📈 Designed as a practical ML prediction project
+- 📂 Loads housing data from a CSV dataset using Pandas.
+- 🧹 Preprocesses categorical property attributes using numerical encoding.
+- 🏷️ Creates binary target labels based on the median housing price.
+- 🤖 Trains a Random Forest Classifier using Scikit-learn.
+- 🌐 Provides an interactive prediction interface using Streamlit.
+- ⚡ Accepts property details through input fields and dropdown menus.
+- 📊 Classifies property inputs into two categories based on learned patterns.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Technology      | Purpose                   |
-| --------------- | ------------------------- |
-| 🐍 Python       | Core programming language |
-| 📊 Pandas       | Data manipulation         |
-| 🔢 NumPy        | Numerical operations      |
-| 🤖 Scikit-learn | Machine Learning          |
-| 📈 Matplotlib   | Data visualization        |
-| 📁 CSV          | Dataset storage           |
+| Technology | Purpose |
+|---|---|
+| Python | Core programming language |
+| Pandas | Dataset loading and preprocessing |
+| Scikit-learn | Model training and classification |
+| Random Forest | Classification algorithm |
+| Streamlit | Interactive web application |
+| Housing.csv | Training and testing dataset |
 
 ---
 
 ## 📁 Project Structure
 
 ```text
-Housing-Price-Prediction-ML-PROJECT-
+Loan-Eligibility-Prediction/
 │
 ├── app.py
-│
 ├── Housing.csv
-│
+├── requirements.txt
 └── README.md
 ```
 
-### `app.py`
+### Files
 
-Contains the main Python implementation for loading the dataset, processing the data, training the Machine Learning model, and generating predictions.
-
-### `Housing.csv`
-
-Contains the housing dataset used for training/testing the Machine Learning model.
+- **`app.py`** — Loads and preprocesses data, trains the classifier, and runs the Streamlit application.
+- **`Housing.csv`** — Contains the housing data used for model training and testing.
+- **`requirements.txt`** — Lists the Python dependencies required to run the application.
+- **`README.md`** — Documents the project, setup instructions, and workflow.
 
 ---
 
 ## 🔄 Machine Learning Workflow
 
-### 1️⃣ Load the Dataset
+### 1. Dataset Loading
 
-The housing dataset is loaded from the CSV file using Python's data-processing libraries.
+The housing dataset is loaded from a CSV file using Pandas.
 
 ```python
 import pandas as pd
 
-data = pd.read_csv("Housing.csv")
+df = pd.read_csv("Housing.csv")
 ```
 
-### 2️⃣ Explore the Data
+### 2. Data Preprocessing
 
-The dataset is inspected to understand:
+Categorical property attributes are converted into numerical values so that the model can process them.
 
-* Available features
-* Data types
-* Missing values
-* Target variable
-* General data distribution
+Examples include:
 
-### 3️⃣ Prepare the Data
+- Yes/No property features mapped to `1` and `0`.
+- Furnishing status encoded as `2`, `1`, and `0`.
 
-The required features are selected and the data is prepared for model training.
+### 3. Target Label Creation
 
-### 4️⃣ Train the Model
+The median property price is used to create the binary classification target.
 
-A regression-based Machine Learning approach is used to learn the relationship between housing features and their corresponding prices.
+```python
+threshold = df["price"].median()
 
-### 5️⃣ Make Predictions
-
-After training, the model can use new housing information to estimate the expected price.
-
-```text
-Input Housing Features
-        ↓
-   Trained Model
-        ↓
- Predicted House Price
+df["Loan_Status"] = df["price"].apply(
+    lambda price: 1 if price > threshold else 0
+)
 ```
 
----
+Properties priced above the median receive label `1`, while properties priced at or below the median receive label `0`.
 
-## 📊 Dataset
+These labels are proxies for the demonstration's eligibility categories, not actual loan approval decisions.
 
-The project uses a housing dataset stored in:
+### 4. Model Training
 
-```text
-Housing.csv
+The dataset is divided into training and testing subsets, and a Random Forest Classifier is trained.
+
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+
+X = df.drop(["price", "Loan_Status"], axis=1)
+y = df["Loan_Status"]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+model = RandomForestClassifier(
+    n_estimators=300,
+    max_depth=12,
+    random_state=42
+)
+
+model.fit(X_train, y_train)
 ```
 
-The dataset contains property-related information that can be used to learn relationships between house characteristics and their prices.
+### 5. Interactive Prediction
 
-> **Note:** The dataset is included in this repository for project demonstration and reproducibility.
+The Streamlit interface collects property information, converts the inputs into the expected numerical format, and passes them to the trained model.
 
----
+The application displays one of two results:
 
-## 💡 Why This Project?
-
-Housing price prediction is a practical example of how Machine Learning can be applied to real-world problems.
-
-Instead of manually estimating prices, a trained model can analyze patterns in historical data and provide data-driven predictions.
-
-This project helped strengthen my understanding of:
-
-* Regression
-* Data preprocessing
-* Feature selection
-* Model training
-* Prediction
-* Dataset handling
-* Python-based Machine Learning
+- **Eligible:** The model predicts class `1`.
+- **Not Eligible:** The model predicts class `0`.
 
 ---
 
-## 🧠 Concepts Demonstrated
+## 🖥️ Application Interface
 
-### Machine Learning
+The application accepts the following inputs:
 
-* Supervised Learning
-* Regression
-* Training and testing
-* Prediction
-* Model evaluation
+- Property area
+- Number of bedrooms
+- Number of bathrooms
+- Number of stories
+- Parking spaces
+- Main road access
+- Guest room availability
+- Basement availability
+- Hot water heating
+- Air conditioning
+- Preferred area
+- Furnishing status
 
-### Python
-
-* Pandas
-* NumPy
-* Data manipulation
-* File handling
-* Machine Learning libraries
+After the user clicks **Check Eligibility**, the model generates a classification based on the supplied property details.
 
 ---
 
-## ⚙️ Installation & Setup
+## ⚙️ Installation and Setup
 
 ### 1. Clone the repository
 
+Replace the example URL with your updated GitHub repository URL after renaming it.
+
 ```bash
-git clone https://github.com/sakshamjha23/Housing-Price-Prediction-ML-PROJECT-.git
+git clone <your-repository-url>
 ```
 
-### 2. Navigate to the project
+### 2. Navigate to the project directory
 
 ```bash
-cd Housing-Price-Prediction-ML-PROJECT-
+cd Loan-Eligibility-Prediction
 ```
 
 ### 3. Install dependencies
 
-```bash
-pip install pandas numpy scikit-learn matplotlib
-```
-
-### 4. Run the project
-
-```bash
-python app.py
-```
-
----
-
-## 📌 Example Workflow
+Create a `requirements.txt` file containing:
 
 ```text
-                 🏠 HOUSING DATA
-                       │
-                       ▼
-                📂 Load CSV Data
-                       │
-                       ▼
-                🧹 Preprocessing
-                       │
-                       ▼
-              🔍 Select Features
-                       │
-                       ▼
-                🤖 Train Model
-                       │
-                       ▼
-              📈 Generate Prediction
-                       │
-                       ▼
-             💰 Estimated House Price
+streamlit
+pandas
+scikit-learn
 ```
+
+Install the packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run the application
+
+```bash
+streamlit run app.py
+```
+
+The Streamlit application will provide a local URL in the terminal. Open it in your browser to use the prediction interface.
 
 ---
 
 ## 📈 Future Improvements
 
-The project can be extended with:
-
-* [ ] Multiple regression algorithms
-* [ ] Hyperparameter tuning
-* [ ] Cross-validation
-* [ ] Better feature engineering
-* [ ] Interactive prediction interface
-* [ ] Model performance comparison
-* [ ] Data visualization dashboard
-* [ ] Model deployment
-* [ ] Cloud hosting
+- [ ] Use a genuine loan eligibility dataset with approved and rejected loan applications.
+- [ ] Include applicant income, credit score, employment status, and existing liabilities.
+- [ ] Evaluate model performance using accuracy, precision, recall, F1-score, and a confusion matrix.
+- [ ] Add cross-validation and hyperparameter tuning.
+- [ ] Save and load the trained model instead of retraining on every application startup.
+- [ ] Add input validation and improved error handling.
+- [ ] Deploy the application to a cloud platform.
 
 ---
 
 ## 🎓 Learning Outcomes
 
-Through this project, I gained practical experience in building a Machine Learning workflow from a raw CSV dataset to a predictive model.
+This project provides practical experience with:
 
-### Key takeaways:
-
-> **Data → Preparation → Model → Prediction**
-
-The project demonstrates how Machine Learning can convert historical housing information into useful predictions.
+- Supervised Machine Learning and classification.
+- Data preprocessing and categorical feature encoding.
+- Training a Random Forest model.
+- Splitting data into training and testing subsets.
+- Building an interactive Streamlit application.
+- Integrating a trained Machine Learning model into a web interface.
 
 ---
 
 ## 👨‍💻 Author
 
-### **Saksham Kumar Jha**
+**Update this section with your own name, educational background, and GitHub profile.**
 
-🎓 **B.E. Information Science & Engineering**
-🏫 CMR Institute of Technology, Bengaluru
-
-🔗 **GitHub:** [sakshamjha23](https://github.com/sakshamjha23)
-
----
-
-## ⭐ Support
-
-If you found this project useful or interesting, consider giving the repository a ⭐ on GitHub!
+- GitHub: [Your GitHub Profile](https://github.com/)
 
 ---
 
 <p align="center">
-  <b>🏠 Predict Smarter. Learn from Data. Build with ML. 🤖</b>
+  <b>🏦 Turning Property Data into Machine Learning Predictions 🤖</b>
 </p>
